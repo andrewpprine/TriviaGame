@@ -4,31 +4,33 @@
 // show next question and buttons, record answer, etc
 // when all 10 questions answered OR when timer is up, show all 10 questions with both correct answer and player answer
 // button to play again at bottom of results page
-
+var timer;
 var seconds = 120;
 
 function countdown(){
-   timer = setInterval(twoMinutes, 1000);
-   function twoMinutes(){
+   twoMinutes = setInterval(timer, 1000);
+   function timer(){
      if (seconds === 0){
        alert("You're out of time!");
        gameover();
      }else if (seconds > 0){
        seconds--;
+       console.log(seconds);
      }
     $("#timer").text(seconds);
-    seconds--;
   }
  }
 
-
-
-
+ function gameover(){
+  clearInterval(timer);
+  $('#gameplay').hide();
+  $('#results').show();
+}
 
 $("button").click(function(){
    $('#preGameplay').hide();
    $('#gameplay').show();
    $('#timer').text(seconds);
-   console.log(seconds);
-   seconds--;
-   });
+   countdown();
+  });
+
