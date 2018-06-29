@@ -16,7 +16,7 @@ var questionArray = [
 `Which is NOT a line Woody (voiced by Hanks) says via pullstring in the Toy Story movies?`,//8
 `What was the name of Hanks' character in <i>Catch Me If You Can</i>?`,//9
 `Which of these Hanks characters was NOT based a biographical figure?`//10
-]
+];
 var answerArray = [
   [`Brian`,`Wilson`,`Bubba`,`Tom`],//1
   [`here`,`over spilled milk`,`about this`,`in baseball`],//2
@@ -28,7 +28,11 @@ var answerArray = [
   [`"There's a snake in my boot!"`,`"Somebody's poisoned the waterhole!"`,`"Reach for the sky!"`,`"Well isn't that a dandy!"`],//8
   [`Carl Handratty`,`Thomas Tophopper`,`William Piccadilly`,`Jimmy Dinglehopper`],//9
   [`an astronaut`,`an airline pilot`,`a train conductor`,`a ship captain`]//10
-  ]
+  ];
+
+var playerAnswerArray = [];
+var correctAnswerArray = [`Wilson`,`in baseball`,`Ronald Reagan`,`Zoltar`,`a toupee`,`Play-Tone`,`Teacher`,`"Well isn't that a dandy!"`,`Carl Handratty`,`a train conductor`];
+var questionCounter = 0;
 
 function countdown(){
   timer = setInterval(timer, 1000);
@@ -51,9 +55,12 @@ function gameover(){
 }
 
 function questionsAndAnswers(){
-  $('#question').html(questionArray);
-  $('#answer').html(answerArray);
-  // $('progress').text
+  $('#question').html(questionArray[questionCounter]);
+  $('#answer1').html(answerArray[questionCounter][0]);
+  $('#answer2').html(answerArray[questionCounter][1]);
+  $('#answer3').html(answerArray[questionCounter][2]);
+  $('#answer4').html(answerArray[questionCounter][3]);
+  $('#progress').text(questionCounter+1);
 }
 
 $("button").click(function(){
