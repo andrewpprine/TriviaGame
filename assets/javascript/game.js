@@ -4,7 +4,7 @@
 // show next question and buttons, record answer, etc
 // when all 10 questions answered OR when timer is up, show all 10 questions with both correct answer and player answer
 // button to play again at bottom of results page
-var seconds = 5;
+var seconds = 1;
 var questionArray = [
 `What name did Hanks give the one friend he had on the island in <i>Castaway</i>?`,//1
 `"There's no crying _______________!"`,//2
@@ -52,14 +52,15 @@ function countdown(){
 function gameover(){
   $('#gameplay').hide();
   $('#results').show();
+  $('#results').html(questionArray[0]+`<br><br>`+correctAnswerArray[0]+`<br><br>`+`<img src='../assets/images/answer1.jpg' width='300' height='300'>`);
 }
 
 function questionsAndAnswers(){
   $('#question').html(questionArray[questionCounter]);
-  $('#answer1').html(answerArray[questionCounter][0]);
-  $('#answer2').html(answerArray[questionCounter][1]);
-  $('#answer3').html(answerArray[questionCounter][2]);
-  $('#answer4').html(answerArray[questionCounter][3]);
+  $('#answer1').html(`<p>`+answerArray[questionCounter][0]+`</p>`);
+  $('#answer2').html(`<p>`+answerArray[questionCounter][1]+`</p>`);
+  $('#answer3').html(`<p>`+answerArray[questionCounter][2]+`</p>`);
+  $('#answer4').html(`<p>`+answerArray[questionCounter][3]+`</p>`);
   $('#progress').text(questionCounter+1);
 }
 
