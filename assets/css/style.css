@@ -28,8 +28,13 @@ body {
 .title h2{
    font-family: 'PT Sans', sans-serif;
 }   
-
-#gameplay span {
+#startGame {
+   color: white;
+   background: red;
+   font-size: 20px;
+   padding: 5px 20px;
+}
+#answer {
    padding: 5px;
    border: 1px black dotted;
 }

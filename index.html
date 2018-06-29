@@ -7,9 +7,7 @@
    <title>Trivia</title>
    <link href="assets/css/reset.css" rel="stylesheet">
    <link href="assets/css/style.css" rel="stylesheet">
-   <link href="https://fonts.googleapis.com/css?family=Londrina+Shadow|PT+Sans" rel="stylesheet">
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-   <script src="assets/javascript/game.js"></script>
+   <link href="https://fonts.googleapis.com/css?family=Londrina+Shadow|PT+Sans" rel="stylesheet"> 
 </head>
 <body>
    <div class="container title">
@@ -21,13 +19,22 @@
    <div class="container">
       <div id="countdown">Time remaining: <span id="timer"></span></div>
       <br>
+      <div id="preGame">
+         <h2>You will have 2 minutes to answer 10 questions related to Tom Hanks movies and characters...</h2>
+         <br>
+         <button id="startGame">Start!</button>
+         <br>
+      </div>
+      <br>
       <div id="gameplay">
-         <span id="question">What is the something something?</span>
-         <span id="answer">Ipsum lorem blah blah blah</span>
+         <div class="questionAnswer" id="question">What is the something something?</div>
+         <div class="questionAnswer" id="answer">Ipsum lorem blah blah blah</div>
       </div>
       <br>
       <div id="totalQuestions">Questions answered<span id="progress"></span></div>
    </div>
+   <script type= "text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script type= "text/javascript" src="assets/javascript/game.js"></script>
 </body>
 </html>
 
