@@ -7,6 +7,10 @@
    h1{
       font-size: 11vw;
    }
+   img{
+      height: 200px;
+      width: 200px;
+   }
 }
 
 body {
@@ -24,10 +28,7 @@ body {
 .title h1{
    color: red;
    font-family: 'Londrina Shadow', cursive;
-}
-.title h2{
-   font-family: 'PT Sans', sans-serif;
-}   
+}  
 button {
    color: white;
    background: red;
