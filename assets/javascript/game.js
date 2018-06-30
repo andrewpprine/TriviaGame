@@ -2,9 +2,70 @@
 // show next question/answer, record answer, etc
 // compare player's answers with correct answers
 // when all 10 questions answered OR when timer is up, show number of player's correct answers, all 10 questions with both correct answer, and player answer
-// define the Try Again button
 
 var seconds = 120;
+var allQuestionsAndAnswers = [
+  { //1
+    question: `What name did Hanks give the one friend he had on the island in <i>Castaway</i>?`,
+    choices: [`Brian`,`Wilson`,`Bubba`,`Tom`],
+    answer: `Wilson`,
+    image: `<img src='assets/images/answer1.jpg' width='300' height='300'>`
+  },
+  { //2
+    question: `"There's no crying _______________!"`,
+    choices: [`here`,`over spilled milk`,`about this`,`in baseball`],
+    answer: `in baseball`,
+    image: `<img src='assets/images/answer2.jpg' width='300' height='300'>`
+  },
+  { //3
+    question: `Which U.S. President did Hanks NOT meet in <i>Forrest Gump</i>?`,
+    choices: [`John Kennedy`,`Lyndon Johnson`,`Richard Nixon`,`Ronald Reagan`],
+    answer: `Ronald Reagan`,
+    image: `<img src='assets/images/answer3.jpg' width='300' height='300'>`
+  },
+  { //4
+    question: `In <i>Big</i>, Hanks makes a wish at a carnival fortune teller to be "big" so that he could ride a roller coaster with a girl he had a crush on. What was the name of the fortune teller?`,
+    choices: [`Genie`,`Zoltar`,`Wizard`,`Wishy`],
+    answer: `Zoltar`,
+    image: `<img src='assets/images/answer4.jpg' width='300' height='300'>`
+  },
+  { //5
+    question: `In <i>The Burbs</i>, what piece of evidence did Hanks find in his neighbor's house that led him to suspect them of murder? <br> Hint: he hid it in his shorts.`,
+    choices: [`a photograph`,`a toupee`,`a bone`,`a half-eaten hot dog`],
+    answer: `a toupee`,
+    image: `<img src='assets/images/answer5.jpg' width='300' height='300'>`
+  },
+  { //6
+    question: `What was the name of the record label Hanks represented in <i>That Thing You Do</i>?`,
+    choices: [`Pop-Tone`,`Ring-Tone`,`Play-Tone`,`Barry-tone`],
+    answer: `Play-Tone`,
+    image: `<img src='assets/images/answer6.jpg' width='300' height='300'>`
+  },
+  { //7
+    question: `In <i>Saving Private Ryan</i>, what did Hanks do for a living prior to World War II?`,
+    choices: [`Teacher`,`Artist`,`Engineer`,`Lumberjack`],
+    answer: `Teacher`,
+    image: `<img src='assets/images/answer7.jpg' width='300' height='300'>`
+  },
+  { //8
+    question: `Which is NOT a line Woody (voiced by Hanks) says via pullstring in the Toy Story movies?`,
+    choices: [`"There's a snake in my boot!"`,`"Somebody's poisoned the waterhole!"`,`"Reach for the sky!"`,`"Well isn't that a dandy!"`],
+    answer: `"Well isn't that a dandy!"`,
+    image: `<img src='assets/images/answer8.jpg' width='300' height='300'>`
+  },
+  { //9
+    question: `What was the name of Hanks' character in <i>Catch Me If You Can</i>?`,
+    choices: [`Carl Handratty`,`Thomas Tophopper`,`William Piccadilly`,`Jimmy Dinglehopper`],
+    answer: `Carl Handratty`,
+    image: `<img src='assets/images/answer9.jpg' width='300' height='300'>`
+  },
+  { //10
+    question: `Which of these Hanks characters was NOT based a biographical figure?`,
+    choices: [`an astronaut`,`an airline pilot`,`a train conductor`,`a ship captain`],
+    answer: `a train conductor`,
+    image: `<img src='assets/images/answer10.jpg' width='300' height='300'>`
+  }
+]
 var questionArray = [
 `What name did Hanks give the one friend he had on the island in <i>Castaway</i>?`,//1
 `"There's no crying _______________!"`,//2
@@ -30,7 +91,7 @@ var answerArray = [
   [`an astronaut`,`an airline pilot`,`a train conductor`,`a ship captain`]//10
   ];
 var imageArray = [
-  `<img src='assets/images/answer1.jpg' width='300' height='300>`,//1
+  `<img src='assets/images/answer1.jpg' width='300' height='300'>`,//1
   `<img src='assets/images/answer2.jpg' width='300' height='300'>`,//2
   `<img src='assets/images/answer3.jpg' width='300' height='300'>`,//3
   `<img src='assets/images/answer4.jpg' width='300' height='300'>`,//4
@@ -48,7 +109,8 @@ var currentQuestion =   $('#question').html(questionArray[questionCounter]+'<br>
 var currentAnswer = $('#answer1').html(answerArray[questionCounter][0]);$('#answer2').html(answerArray[questionCounter][1]);$('#answer3').html(answerArray[questionCounter][2]);$('#answer4').html(answerArray[questionCounter][3]);
 var currentImage = $('#image').html(imageArray[questionCounter]);
 var correctAnswers;
-var tryAgain = `<button id='tryagain'>Try Again!</button>`
+var tryAgain = `<button id='tryagain' href='#' onClick="window.location.reload();return false";>Try Again!</button>`
+
 // tryAgain = $('tryagain').click(timeToPlay());
 
 function countdown(){ //the countdown clock and when to kill or continue it
@@ -60,9 +122,8 @@ function countdown(){ //the countdown clock and when to kill or continue it
       gameover();
     }else if (seconds > 0){//if there is time left, then continue the timer
       seconds--;
-      console.log(seconds);
     }
-    if(questionCounter>=10){//stops timer if all questions have been answered, regardless of time left
+    if(questionCounter>10){//stops timer if all questions have been answered, regardless of time left
       clearInterval(timer);
     }
     $("#timer").text(seconds);
@@ -73,7 +134,7 @@ function gameover(){
   $('#gameplay').hide();
   $('#results').show();
   $(`#correctAnswerNumber`).text(correctAnswers);
-  $('#resultsRecap').html(`<hr style: color='red'><br>`+questionArray[0]+`<br><br>Your answer: `+playerAnswerArray[0]+`<br>Correct answer: `+correctAnswerArray[0]+`<br><br>`+imageArray[0]+`<br><br><hr style: color='red'><br>`+`<br><br><hr style: color="red"><br>`+questionArray[1]+`<br><br>Your answer: `+playerAnswerArray[1]+`<br>Correct answer: `+correctAnswerArray[1]+`<br><br>`+imageArray[1]+`<br><br><hr style: color='red'><br>`+questionArray[2]+`<br><br>Your answer: `+playerAnswerArray[2]+`<br>Correct answer: `+correctAnswerArray[2]+`<br><br>`+imageArray[2]+`<br><br><hr style: color='red'><br>`+questionArray[3]+`<br><br>Your answer: `+playerAnswerArray[3]+`<br>Correct answer: `+correctAnswerArray[3]+`<br><br>`+imageArray[3]+`<br><br><hr style: color='red'><br>`+questionArray[4]+`<br><br>Your answer: `+playerAnswerArray[4]+`<br>Correct answer: `+correctAnswerArray[4]+`<br><br>`+imageArray[4]+`<br><br><hr style: color='red'><br>`+questionArray[5]+`<br><br>Your answer: `+playerAnswerArray[5]+`<br>Correct answer: `+correctAnswerArray[5]+`<br><br>`+imageArray[5]+`<br><br><hr style: color='red'><br>`+questionArray[6]+`<br><br>Your answer: `+playerAnswerArray[6]+`<br>Correct answer: `+correctAnswerArray[6]+`<br><br>`+imageArray[6]+`<br><br><hr style: color='red'><br>`+questionArray[7]+`<br><br>Your answer: `+playerAnswerArray[7]+`<br>Correct answer: `+correctAnswerArray[7]+`<br><br>`+imageArray[7]+`<br><br><hr style: color='red'><br>`+questionArray[8]+`<br><br>Your answer: `+playerAnswerArray[8]+`<br>Correct answer: `+correctAnswerArray[8]+`<br><br>`+imageArray[8]+`<br><br><hr style: color='red'><br>`+questionArray[9]+`<br><br>Your answer: `+playerAnswerArray[9]+`<br>Correct answer: `+correctAnswerArray[9]+`<br><br>`+imageArray[9]+`<br><br><br>`+tryAgain);
+  $('#resultsRecap').html(`<hr style: color='red'><br>`+questionArray[0]+`<br><br>Your answer: `+playerAnswerArray[0]+`<br>Correct answer: `+correctAnswerArray[0]+`<br><br>`+imageArray[0]+`<br><br><hr style: color='red'><br>`+questionArray[1]+`<br><br>Your answer: `+playerAnswerArray[1]+`<br>Correct answer: `+correctAnswerArray[1]+`<br><br>`+imageArray[1]+`<br><br><hr style: color='red'><br>`+questionArray[2]+`<br><br>Your answer: `+playerAnswerArray[2]+`<br>Correct answer: `+correctAnswerArray[2]+`<br><br>`+imageArray[2]+`<br><br><hr style: color='red'><br>`+questionArray[3]+`<br><br>Your answer: `+playerAnswerArray[3]+`<br>Correct answer: `+correctAnswerArray[3]+`<br><br>`+imageArray[3]+`<br><br><hr style: color='red'><br>`+questionArray[4]+`<br><br>Your answer: `+playerAnswerArray[4]+`<br>Correct answer: `+correctAnswerArray[4]+`<br><br>`+imageArray[4]+`<br><br><hr style: color='red'><br>`+questionArray[5]+`<br><br>Your answer: `+playerAnswerArray[5]+`<br>Correct answer: `+correctAnswerArray[5]+`<br><br>`+imageArray[5]+`<br><br><hr style: color='red'><br>`+questionArray[6]+`<br><br>Your answer: `+playerAnswerArray[6]+`<br>Correct answer: `+correctAnswerArray[6]+`<br><br>`+imageArray[6]+`<br><br><hr style: color='red'><br>`+questionArray[7]+`<br><br>Your answer: `+playerAnswerArray[7]+`<br>Correct answer: `+correctAnswerArray[7]+`<br><br>`+imageArray[7]+`<br><br><hr style: color='red'><br>`+questionArray[8]+`<br><br>Your answer: `+playerAnswerArray[8]+`<br>Correct answer: `+correctAnswerArray[8]+`<br><br>`+imageArray[8]+`<br><br><hr style: color='red'><br>`+questionArray[9]+`<br><br>Your answer: `+playerAnswerArray[9]+`<br>Correct answer: `+correctAnswerArray[9]+`<br><br>`+imageArray[9]+`<br><br><br>`+tryAgain);
 }
 
 function answerTheQuestion(){
@@ -90,7 +151,12 @@ function questionsAndAnswers(){
   $('.answer').click(function(){
     if(questionCounter<=10){
       questionCounter++;
-      answerTheQuestion();
+      currentQuestion;
+      currentAnswer;
+      currentImage;
+      $('#progress').text(questionCounter+1);
+      console.log(questionCounter);
+
     }else{
       gameover();
     }
