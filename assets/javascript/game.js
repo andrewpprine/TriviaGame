@@ -1,6 +1,5 @@
-// record player's answer by pushing to playerAnswerArray
+// record player's answer 
 // show next question/answer, record answer, etc
-// compare player's answers with correct answers
 // when all 10 questions answered OR when timer is up, show number of player's correct answers, all 10 questions with both correct answer, and player answer
 
 var seconds = 120;
@@ -104,26 +103,25 @@ var imageArray = [
 ]
 var correctAnswerArray = [`Wilson`,`in baseball`,`Ronald Reagan`,`Zoltar`,`a toupee`,`Play-Tone`,`Teacher`,`"Well isn't that a dandy!"`,`Carl Handratty`,`a train conductor`];
 var playerAnswerArray = [];
-var questionCounter = 0;
+var questionCounter = 1;
 
 
-var currentQuizItem = $('#question').html(allQuestionsAndAnswers[questionCounter].question+
+var currentQuizItem = $('#question').html(allQuestionsAndAnswers[questionCounter-1].question+
   `<br><br>
-  <button>`+allQuestionsAndAnswers[questionCounter].choices[0]+`</button>
-  <button>`+allQuestionsAndAnswers[questionCounter].choices[1]+`</button>
-  <button>`+allQuestionsAndAnswers[questionCounter].choices[2]+`</button>
-  <button>`+allQuestionsAndAnswers[questionCounter].choices[3]+`</button>`+
+  <button>`+allQuestionsAndAnswers[questionCounter-1].choices[0]+`</button>
+  <button>`+allQuestionsAndAnswers[questionCounter-1].choices[1]+`</button>
+  <button>`+allQuestionsAndAnswers[questionCounter-1].choices[2]+`</button>
+  <button>`+allQuestionsAndAnswers[questionCounter-1].choices[3]+`</button>`+
   `<br><br>`+
-  allQuestionsAndAnswers[questionCounter].image);
+  allQuestionsAndAnswers[questionCounter-1].image);
 
 
 // var currentQuestion = $('#question').html(questionArray[questionCounter]+'<br><br>');
 // var currentAnswer = $('#answer1').html(answerArray[questionCounter][0]);$('#answer2').html(answerArray[questionCounter][1]);$('#answer3').html(answerArray[questionCounter][2]);$('#answer4').html(answerArray[questionCounter][3]);
 // var currentImage = $('#image').html(imageArray[questionCounter]);
-var correctAnswers;
+var correctAnswers = 0;
+var incorrectAnswers = 0;
 var tryAgain = `<button id='tryagain' href='#' onClick="window.location.reload();return false";>Try Again!</button>`
-
-// tryAgain = $('tryagain').click(timeToPlay());
 
 function countdown(){ //the countdown clock and when to kill or continue it
   timer = setInterval(timer, 1000);
@@ -135,7 +133,7 @@ function countdown(){ //the countdown clock and when to kill or continue it
     }else if (seconds > 0){//if there is time left, then continue the timer
       seconds--;
     }
-    if(questionCounter>10){//stops timer if all questions have been answered, regardless of time left
+    if(questionCounter>=10){//stops timer if all questions have been answered, regardless of time left
       clearInterval(timer);
     }
     $("#timer").text(seconds);
@@ -146,41 +144,68 @@ function gameover(){
   $('#gameplay').hide();
   $('#results').show();
   $(`#correctAnswerNumber`).text(correctAnswers);
-  $('#resultsRecap').html(`<hr style: color='red'><br>`+questionArray[0]+`<br><br>Your answer: `+playerAnswerArray[0]+`<br>Correct answer: `+correctAnswerArray[0]+`<br><br>`+imageArray[0]+`<br><br><hr style: color='red'><br>`+questionArray[1]+`<br><br>Your answer: `+playerAnswerArray[1]+`<br>Correct answer: `+correctAnswerArray[1]+`<br><br>`+imageArray[1]+`<br><br><hr style: color='red'><br>`+questionArray[2]+`<br><br>Your answer: `+playerAnswerArray[2]+`<br>Correct answer: `+correctAnswerArray[2]+`<br><br>`+imageArray[2]+`<br><br><hr style: color='red'><br>`+questionArray[3]+`<br><br>Your answer: `+playerAnswerArray[3]+`<br>Correct answer: `+correctAnswerArray[3]+`<br><br>`+imageArray[3]+`<br><br><hr style: color='red'><br>`+questionArray[4]+`<br><br>Your answer: `+playerAnswerArray[4]+`<br>Correct answer: `+correctAnswerArray[4]+`<br><br>`+imageArray[4]+`<br><br><hr style: color='red'><br>`+questionArray[5]+`<br><br>Your answer: `+playerAnswerArray[5]+`<br>Correct answer: `+correctAnswerArray[5]+`<br><br>`+imageArray[5]+`<br><br><hr style: color='red'><br>`+questionArray[6]+`<br><br>Your answer: `+playerAnswerArray[6]+`<br>Correct answer: `+correctAnswerArray[6]+`<br><br>`+imageArray[6]+`<br><br><hr style: color='red'><br>`+questionArray[7]+`<br><br>Your answer: `+playerAnswerArray[7]+`<br>Correct answer: `+correctAnswerArray[7]+`<br><br>`+imageArray[7]+`<br><br><hr style: color='red'><br>`+questionArray[8]+`<br><br>Your answer: `+playerAnswerArray[8]+`<br>Correct answer: `+correctAnswerArray[8]+`<br><br>`+imageArray[8]+`<br><br><hr style: color='red'><br>`+questionArray[9]+`<br><br>Your answer: `+playerAnswerArray[9]+`<br>Correct answer: `+correctAnswerArray[9]+`<br><br>`+imageArray[9]+`<br><br><br>`+tryAgain);
+  $('#resultsRecap').html(`<hr style: color='red'><br>`+allQuestionsAndAnswers[0].question+`<br>Correct answer: `+allQuestionsAndAnswers[0].answer+`<br><br>`+allQuestionsAndAnswers[0].image+`<br><br><hr style: color ='red'><br>`+allQuestionsAndAnswers[1].question+`<br>Correct answer: `+allQuestionsAndAnswers[1].answer+`<br><br>`+allQuestionsAndAnswers[1].image+`<br><br><hr style: color ='red'><br>`+allQuestionsAndAnswers[2].question+`<br>Correct answer: `+allQuestionsAndAnswers[2].answer+`<br><br>`+allQuestionsAndAnswers[2].image+`<br><br><hr style: color ='red'><br>`+allQuestionsAndAnswers[3].question+`<br>Correct answer: `+allQuestionsAndAnswers[3].answer+`<br><br>`+allQuestionsAndAnswers[3].image+`<br><br><hr style: color ='red'><br>`+allQuestionsAndAnswers[4].question+`<br>Correct answer: `+allQuestionsAndAnswers[4].answer+`<br><br>`+allQuestionsAndAnswers[4].image+`<br><br><hr style: color ='red'><br>`+allQuestionsAndAnswers[5].question+`<br>Correct answer: `+allQuestionsAndAnswers[5].answer+`<br><br>`+allQuestionsAndAnswers[5].image+`<br><br><hr style: color ='red'><br>`+allQuestionsAndAnswers[6].question+`<br>Correct answer: `+allQuestionsAndAnswers[6].answer+`<br><br>`+allQuestionsAndAnswers[6].image+`<br><br><hr style: color ='red'><br>`+allQuestionsAndAnswers[7].question+`<br>Correct answer: `+allQuestionsAndAnswers[7].answer+`<br><br>`+allQuestionsAndAnswers[7].image+`<br><br><hr style: color ='red'><br>`+allQuestionsAndAnswers[8].question+`<br>Correct answer: `+allQuestionsAndAnswers[8].answer+`<br><br>`+allQuestionsAndAnswers[8].image+`<br><br><hr style: color ='red'><br>`+allQuestionsAndAnswers[9].question+`<br>Correct answer: `+allQuestionsAndAnswers[9].answer+`<br><br>`+allQuestionsAndAnswers[9].image+`<br><br><hr style: color ='red'><br>`
+  // questionArray[0]+`<br><br>Your answer: `+playerAnswerArray[0]+`<br>Correct answer: `+correctAnswerArray[0]+`<br><br>`+imageArray[0]+`<br><br><hr style: color='red'><br>`+questionArray[1]+`<br><br>Your answer: `+playerAnswerArray[1]+`<br>Correct answer: `+correctAnswerArray[1]+`<br><br>`+imageArray[1]+`<br><br><hr style: color='red'><br>`+questionArray[2]+`<br><br>Your answer: `+playerAnswerArray[2]+`<br>Correct answer: `+correctAnswerArray[2]+`<br><br>`+imageArray[2]+`<br><br><hr style: color='red'><br>`+questionArray[3]+`<br><br>Your answer: `+playerAnswerArray[3]+`<br>Correct answer: `+correctAnswerArray[3]+`<br><br>`+imageArray[3]+`<br><br><hr style: color='red'><br>`+questionArray[4]+`<br><br>Your answer: `+playerAnswerArray[4]+`<br>Correct answer: `+correctAnswerArray[4]+`<br><br>`+imageArray[4]+`<br><br><hr style: color='red'><br>`+questionArray[5]+`<br><br>Your answer: `+playerAnswerArray[5]+`<br>Correct answer: `+correctAnswerArray[5]+`<br><br>`+imageArray[5]+`<br><br><hr style: color='red'><br>`+questionArray[6]+`<br><br>Your answer: `+playerAnswerArray[6]+`<br>Correct answer: `+correctAnswerArray[6]+`<br><br>`+imageArray[6]+`<br><br><hr style: color='red'><br>`+questionArray[7]+`<br><br>Your answer: `+playerAnswerArray[7]+`<br>Correct answer: `+correctAnswerArray[7]+`<br><br>`+imageArray[7]+`<br><br><hr style: color='red'><br>`+questionArray[8]+`<br><br>Your answer: `+playerAnswerArray[8]+`<br>Correct answer: `+correctAnswerArray[8]+`<br><br>`+imageArray[8]+`<br><br><hr style: color='red'><br>`+questionArray[9]+`<br><br>Your answer: `+playerAnswerArray[9]+`<br>Correct answer: `+correctAnswerArray[9]+`<br><br>`+imageArray[9]+`<br><br><br>`
+  +tryAgain);
 }
 
-function answerTheQuestion(){
-  $('.answer').click(function(){
-    questionsAndAnswers();
-  });
-}
+// --------------------------------------------------------
+// function answerTheQuestion(){
+//   $('.answer').click(function(){
+//     questionsAndAnswers();
+//   });
+// }
 
-function questionsAndAnswers(){
+// function questionsAndAnswers(){
+//   currentQuizItem;
+
+//   // currentQuestion;
+//   // currentAnswer;
+//   // currentImage;
+//   $('#progress').text(questionCounter+1);
+//   $('.answer').click(function(){
+//     if(questionCounter<=10){
+//       questionCounter++;
+//       // currentQuestion;
+//       // currentAnswer;
+//       // currentImage;
+//       $('#progress').text(questionCounter+1);
+//       console.log(questionCounter);
+
+//     }else{
+//       gameover();
+//     }
+//   });
+// }
+function refreshGameplay(){
+  $('#progress').text(questionCounter);
   currentQuizItem;
-
-  // currentQuestion;
-  // currentAnswer;
-  // currentImage;
-  $('#progress').text(questionCounter+1);
-  $('.answer').click(function(){
-    if(questionCounter<=10){
-      questionCounter++;
-      // currentQuestion;
-      // currentAnswer;
-      // currentImage;
-      $('#progress').text(questionCounter+1);
-      console.log(questionCounter);
-
-    }else{
-      gameover();
-    }
-  });
 }
 
-$("#startGame").click(function timeToPlay(){
+
+function playGame(){
+  $('#progress').text(questionCounter);
+  $('button').on('click',function (){
+    if ($(this).text() == allQuestionsAndAnswers[questionCounter].answer){
+      correctAnswers++;
+    }else{
+      incorrectAnswers++;
+    }
+    console.log(questionCounter);
+    questionCounter++;
+    if(questionCounter >= 10){
+      gameover();
+    }else{
+      refreshGameplay();
+    }
+  })
+}
+// --------------------------------------------------------
+
+$("#startGame").click(function(){
   $('#preGameplay').hide();
   $('#gameplay').show();
   $('#timer').text(seconds);
   countdown();
-  questionsAndAnswers();
+  playGame();
 });
