@@ -105,9 +105,21 @@ var imageArray = [
 var correctAnswerArray = [`Wilson`,`in baseball`,`Ronald Reagan`,`Zoltar`,`a toupee`,`Play-Tone`,`Teacher`,`"Well isn't that a dandy!"`,`Carl Handratty`,`a train conductor`];
 var playerAnswerArray = [];
 var questionCounter = 0;
-var currentQuestion =   $('#question').html(questionArray[questionCounter]+'<br><br>');
-var currentAnswer = $('#answer1').html(answerArray[questionCounter][0]);$('#answer2').html(answerArray[questionCounter][1]);$('#answer3').html(answerArray[questionCounter][2]);$('#answer4').html(answerArray[questionCounter][3]);
-var currentImage = $('#image').html(imageArray[questionCounter]);
+
+
+var currentQuizItem = $('#question').html(allQuestionsAndAnswers[questionCounter].question+
+  `<br><br>
+  <button>`+allQuestionsAndAnswers[questionCounter].choices[0]+`</button>
+  <button>`+allQuestionsAndAnswers[questionCounter].choices[1]+`</button>
+  <button>`+allQuestionsAndAnswers[questionCounter].choices[2]+`</button>
+  <button>`+allQuestionsAndAnswers[questionCounter].choices[3]+`</button>`+
+  `<br><br>`+
+  allQuestionsAndAnswers[questionCounter].image);
+
+
+// var currentQuestion = $('#question').html(questionArray[questionCounter]+'<br><br>');
+// var currentAnswer = $('#answer1').html(answerArray[questionCounter][0]);$('#answer2').html(answerArray[questionCounter][1]);$('#answer3').html(answerArray[questionCounter][2]);$('#answer4').html(answerArray[questionCounter][3]);
+// var currentImage = $('#image').html(imageArray[questionCounter]);
 var correctAnswers;
 var tryAgain = `<button id='tryagain' href='#' onClick="window.location.reload();return false";>Try Again!</button>`
 
@@ -144,16 +156,18 @@ function answerTheQuestion(){
 }
 
 function questionsAndAnswers(){
-  currentQuestion;
-  currentAnswer;
-  currentImage;
+  currentQuizItem;
+
+  // currentQuestion;
+  // currentAnswer;
+  // currentImage;
   $('#progress').text(questionCounter+1);
   $('.answer').click(function(){
     if(questionCounter<=10){
       questionCounter++;
-      currentQuestion;
-      currentAnswer;
-      currentImage;
+      // currentQuestion;
+      // currentAnswer;
+      // currentImage;
       $('#progress').text(questionCounter+1);
       console.log(questionCounter);
 
