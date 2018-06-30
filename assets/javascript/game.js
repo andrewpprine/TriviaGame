@@ -179,13 +179,20 @@ function gameover(){
 // }
 function refreshGameplay(){
   $('#progress').text(questionCounter+1);
-  currentQuizItem;
+  $('#question').html(allQuestionsAndAnswers[questionCounter].question+
+    `<br><br>
+    <button>`+allQuestionsAndAnswers[questionCounter].choices[0]+`</button>
+    <button>`+allQuestionsAndAnswers[questionCounter].choices[1]+`</button>
+    <button>`+allQuestionsAndAnswers[questionCounter].choices[2]+`</button>
+    <button>`+allQuestionsAndAnswers[questionCounter].choices[3]+`</button>`+
+    `<br><br>`+
+    allQuestionsAndAnswers[questionCounter].image);
+    playGame();
 }
 
 function playGame(){
   $('#progress').text(questionCounter+1);
   $('button').on('click',function (){
-    debugger
     if ($(this).text() == allQuestionsAndAnswers[questionCounter].answer){
       correctAnswers++;
     }else{
