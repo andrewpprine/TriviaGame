@@ -38,3 +38,6 @@ button {
 #gameplay, #results {
    display: none;
 }
+#resultsSummary {
+   font-size: 20px;
+}
