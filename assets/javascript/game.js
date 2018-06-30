@@ -1,8 +1,9 @@
-// record player's answer
+// record player's answer by pushing to playerAnswerArray
 // show next question/answer, record answer, etc
 // compare player's answers with correct answers
 // when all 10 questions answered OR when timer is up, show number of player's correct answers, all 10 questions with both correct answer, and player answer
-// button to play again at bottom of results page
+// define the Try Again button
+
 var seconds = 120;
 var questionArray = [
 `What name did Hanks give the one friend he had on the island in <i>Castaway</i>?`,//1
@@ -40,67 +41,66 @@ var imageArray = [
   `<img src='assets/images/answer9.jpg' width='300' height='300'>`,//9
   `<img src='assets/images/answer10.jpg' width='300' height='300'>`//10
 ]
-var playerAnswerArray = [];
 var correctAnswerArray = [`Wilson`,`in baseball`,`Ronald Reagan`,`Zoltar`,`a toupee`,`Play-Tone`,`Teacher`,`"Well isn't that a dandy!"`,`Carl Handratty`,`a train conductor`];
+var playerAnswerArray = [];
 var questionCounter = 0;
 var currentQuestion =   $('#question').html(questionArray[questionCounter]+'<br><br>');
 var currentAnswer = $('#answer1').html(answerArray[questionCounter][0]);$('#answer2').html(answerArray[questionCounter][1]);$('#answer3').html(answerArray[questionCounter][2]);$('#answer4').html(answerArray[questionCounter][3]);
 var currentImage = $('#image').html(imageArray[questionCounter]);
 var correctAnswers;
+var tryAgain = `<button id='tryagain'>Try Again!</button>`
+// tryAgain = $('tryagain').click(timeToPlay());
 
-function countdown(){
+function countdown(){ //the countdown clock and when to kill or continue it
   timer = setInterval(timer, 1000);
   function timer(){
-    if (seconds == 0){
+    if (seconds == 0){ //if timer runs out then game is over
       clearInterval(timer);
       alert("You're out of time!");
       gameover();
-    }else if (seconds > 0){
+    }else if (seconds > 0){//if there is time left, then continue the timer
       seconds--;
       console.log(seconds);
     }
-    if(questionCounter>=10){
+    if(questionCounter>=10){//stops timer if all questions have been answered, regardless of time left
       clearInterval(timer);
     }
     $("#timer").text(seconds);
   }
  }
  
-function answerSubmit(){
-  $('.answer').click(function(){
-    questionsAndAnswers();
-  });
-}
-
 function gameover(){
   $('#gameplay').hide();
   $('#results').show();
-  $(`#correctAnswerNumber`).text(correctAnswers)
-  $('#results').append(`<hr style: color='red'><br>`+questionArray[0]+`<br><br>Your answer: `+playerAnswerArray[0]+`<br>Correct answer: `+correctAnswerArray[0]+`<br><br>`+imageArray[0]+`<br><br><hr style: color='red'><br>`+questionArray[1]+`<br><br>Your answer: `+playerAnswerArray[1]+`<br>Correct answer: `+correctAnswerArray[1]+`<br><br>`+imageArray[1]+`<br><br><hr style: color='red'><br>`+questionArray[2]+`<br><br>Your answer: `+playerAnswerArray[2]+`<br>Correct answer: `+correctAnswerArray[2]+`<br><br>`+imageArray[2]+`<br><br><hr style: color='red'><br>`+questionArray[3]+`<br><br>Your answer: `+playerAnswerArray[3]+`<br>Correct answer: `+correctAnswerArray[3]+`<br><br>`+imageArray[3]+`<br><br><hr style: color='red'><br>`+questionArray[4]+`<br><br>Your answer: `+playerAnswerArray[4]+`<br>Correct answer: `+correctAnswerArray[4]+`<br><br>`+imageArray[4]+`<br><br><hr style: color='red'><br>`+questionArray[5]+`<br><br>Your answer: `+playerAnswerArray[5]+`<br>Correct answer: `+correctAnswerArray[5]+`<br><br>`+imageArray[5]+`<br><br><hr style: color='red'><br>`+questionArray[6]+`<br><br>Your answer: `+playerAnswerArray[6]+`<br>Correct answer: `+correctAnswerArray[6]+`<br><br>`+imageArray[6]+`<br><br><hr style: color='red'><br>`+questionArray[7]+`<br><br>Your answer: `+playerAnswerArray[7]+`<br>Correct answer: `+correctAnswerArray[7]+`<br><br>`+imageArray[7]+`<br><br><hr style: color='red'><br>`+questionArray[8]+`<br><br>Your answer: `+playerAnswerArray[8]+`<br>Correct answer: `+correctAnswerArray[8]+`<br><br>`+imageArray[8]+`<br><br><hr style: color='red'><br>`+questionArray[9]+`<br><br>Your answer: `+playerAnswerArray[9]+`<br>Correct answer: `+correctAnswerArray[9]+`<br><br>`+imageArray[9]);
+  $(`#correctAnswerNumber`).text(correctAnswers);
+  $('#resultsRecap').html(`<hr style: color='red'><br>`+questionArray[0]+`<br><br>Your answer: `+playerAnswerArray[0]+`<br>Correct answer: `+correctAnswerArray[0]+`<br><br>`+imageArray[0]+`<br><br><hr style: color='red'><br>`+`<br><br><hr style: color="red"><br>`+questionArray[1]+`<br><br>Your answer: `+playerAnswerArray[1]+`<br>Correct answer: `+correctAnswerArray[1]+`<br><br>`+imageArray[1]+`<br><br><hr style: color='red'><br>`+questionArray[2]+`<br><br>Your answer: `+playerAnswerArray[2]+`<br>Correct answer: `+correctAnswerArray[2]+`<br><br>`+imageArray[2]+`<br><br><hr style: color='red'><br>`+questionArray[3]+`<br><br>Your answer: `+playerAnswerArray[3]+`<br>Correct answer: `+correctAnswerArray[3]+`<br><br>`+imageArray[3]+`<br><br><hr style: color='red'><br>`+questionArray[4]+`<br><br>Your answer: `+playerAnswerArray[4]+`<br>Correct answer: `+correctAnswerArray[4]+`<br><br>`+imageArray[4]+`<br><br><hr style: color='red'><br>`+questionArray[5]+`<br><br>Your answer: `+playerAnswerArray[5]+`<br>Correct answer: `+correctAnswerArray[5]+`<br><br>`+imageArray[5]+`<br><br><hr style: color='red'><br>`+questionArray[6]+`<br><br>Your answer: `+playerAnswerArray[6]+`<br>Correct answer: `+correctAnswerArray[6]+`<br><br>`+imageArray[6]+`<br><br><hr style: color='red'><br>`+questionArray[7]+`<br><br>Your answer: `+playerAnswerArray[7]+`<br>Correct answer: `+correctAnswerArray[7]+`<br><br>`+imageArray[7]+`<br><br><hr style: color='red'><br>`+questionArray[8]+`<br><br>Your answer: `+playerAnswerArray[8]+`<br>Correct answer: `+correctAnswerArray[8]+`<br><br>`+imageArray[8]+`<br><br><hr style: color='red'><br>`+questionArray[9]+`<br><br>Your answer: `+playerAnswerArray[9]+`<br>Correct answer: `+correctAnswerArray[9]+`<br><br>`+imageArray[9]+`<br><br><br>`+tryAgain);
+}
+
+function answerTheQuestion(){
+  $('.answer').click(function(){
+    questionsAndAnswers();
+  });
 }
 
 function questionsAndAnswers(){
   currentQuestion;
   currentAnswer;
   currentImage;
-  $('#progress').text(questionCounter);
-  answerSubmit();//record answer to right or wrong
+  $('#progress').text(questionCounter+1);
   $('.answer').click(function(){
     if(questionCounter<=10){
       questionCounter++;
-      questionsAndAnswers();
+      answerTheQuestion();
     }else{
       gameover();
     }
   });
 }
 
-$("#startGame").click(function(){
+$("#startGame").click(function timeToPlay(){
   $('#preGameplay').hide();
   $('#gameplay').show();
   $('#timer').text(seconds);
-  console.log(questionCounter)
   countdown();
   questionsAndAnswers();
 });
-
