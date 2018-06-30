@@ -103,17 +103,17 @@ var imageArray = [
 ]
 var correctAnswerArray = [`Wilson`,`in baseball`,`Ronald Reagan`,`Zoltar`,`a toupee`,`Play-Tone`,`Teacher`,`"Well isn't that a dandy!"`,`Carl Handratty`,`a train conductor`];
 var playerAnswerArray = [];
-var questionCounter = 1;
+var questionCounter = 0;
 
 
-var currentQuizItem = $('#question').html(allQuestionsAndAnswers[questionCounter-1].question+
+var currentQuizItem = $('#question').html(allQuestionsAndAnswers[questionCounter].question+
   `<br><br>
-  <button>`+allQuestionsAndAnswers[questionCounter-1].choices[0]+`</button>
-  <button>`+allQuestionsAndAnswers[questionCounter-1].choices[1]+`</button>
-  <button>`+allQuestionsAndAnswers[questionCounter-1].choices[2]+`</button>
-  <button>`+allQuestionsAndAnswers[questionCounter-1].choices[3]+`</button>`+
+  <button>`+allQuestionsAndAnswers[questionCounter].choices[0]+`</button>
+  <button>`+allQuestionsAndAnswers[questionCounter].choices[1]+`</button>
+  <button>`+allQuestionsAndAnswers[questionCounter].choices[2]+`</button>
+  <button>`+allQuestionsAndAnswers[questionCounter].choices[3]+`</button>`+
   `<br><br>`+
-  allQuestionsAndAnswers[questionCounter-1].image);
+  allQuestionsAndAnswers[questionCounter].image);
 
 
 // var currentQuestion = $('#question').html(questionArray[questionCounter]+'<br><br>');
@@ -178,29 +178,27 @@ function gameover(){
 //   });
 // }
 function refreshGameplay(){
-  $('#progress').text(questionCounter);
+  $('#progress').text(questionCounter+1);
   currentQuizItem;
 }
 
-
 function playGame(){
-  $('#progress').text(questionCounter);
+  $('#progress').text(questionCounter+1);
   $('button').on('click',function (){
+    debugger
     if ($(this).text() == allQuestionsAndAnswers[questionCounter].answer){
       correctAnswers++;
     }else{
       incorrectAnswers++;
     }
-    console.log(questionCounter);
     questionCounter++;
     if(questionCounter >= 10){
       gameover();
     }else{
       refreshGameplay();
     }
-  })
+  });
 }
-// --------------------------------------------------------
 
 $("#startGame").click(function(){
   $('#preGameplay').hide();
