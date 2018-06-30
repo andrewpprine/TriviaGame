@@ -29,7 +29,7 @@ var answerArray = [
   [`an astronaut`,`an airline pilot`,`a train conductor`,`a ship captain`]//10
   ];
 var imageArray = [
-  `<img src='assets/images/answer1.jpg' width='300' height='300'>`,//1
+  `<img src='assets/images/answer1.jpg' width='300' height='300>`,//1
   `<img src='assets/images/answer2.jpg' width='300' height='300'>`,//2
   `<img src='assets/images/answer3.jpg' width='300' height='300'>`,//3
   `<img src='assets/images/answer4.jpg' width='300' height='300'>`,//4
