@@ -1,8 +1,7 @@
-// start a timer
-// show a question and a list of radio buttons
 // record player's answer
-// show next question and buttons, record answer, etc
-// when all 10 questions answered OR when timer is up, show all 10 questions with both correct answer and player answer
+// show next question/answer, record answer, etc
+// compare player's answers with correct answers
+// when all 10 questions answered OR when timer is up, show number of player's correct answers, all 10 questions with both correct answer, and player answer
 // button to play again at bottom of results page
 var seconds = 120;
 var questionArray = [
@@ -30,16 +29,16 @@ var answerArray = [
   [`an astronaut`,`an airline pilot`,`a train conductor`,`a ship captain`]//10
   ];
 var imageArray = [
-  `<img src='../assets/images/answer1.jpg' width= '300' height='300'>`,//1
-  `<img src='../assets/images/answer2.jpg' width= '300' height='300'>`,//2
-  `<img src='../assets/images/answer3.jpg' width= '300' height='300'>`,//3
-  `<img src='../assets/images/answer4.jpg' width= '300' height='300'>`,//4
-  `<img src='../assets/images/answer5.jpg' width= '300' height='300'>`,//5
-  `<img src='../assets/images/answer6.jpg' width= '300' height='300'>`,//6
-  `<img src='../assets/images/answer7.jpg' width= '300' height='300'>`,//7
-  `<img src='../assets/images/answer9.jpg' width= '300' height='300'>`,//8
-  `<img src='../assets/images/answer9.jpg' width= '300' height='300'>`,//9
-  `<img src='../assets/images/answer10.jpg' width= '300' height='300'>`//10
+  `<img src='assets/images/answer1.jpg' width='300' height='300'>`,//1
+  `<img src='assets/images/answer2.jpg' width='300' height='300'>`,//2
+  `<img src='assets/images/answer3.jpg' width='300' height='300'>`,//3
+  `<img src='assets/images/answer4.jpg' width='300' height='300'>`,//4
+  `<img src='assets/images/answer5.jpg' width='300' height='300'>`,//5
+  `<img src='assets/images/answer6.jpg' width='300' height='300'>`,//6
+  `<img src='assets/images/answer7.jpg' width='300' height='300'>`,//7
+  `<img src='assets/images/answer8.jpg' width='300' height='300'>`,//8
+  `<img src='assets/images/answer9.jpg' width='300' height='300'>`,//9
+  `<img src='assets/images/answer10.jpg' width='300' height='300'>`//10
 ]
 var playerAnswerArray = [];
 var correctAnswerArray = [`Wilson`,`in baseball`,`Ronald Reagan`,`Zoltar`,`a toupee`,`Play-Tone`,`Teacher`,`"Well isn't that a dandy!"`,`Carl Handratty`,`a train conductor`];
@@ -69,8 +68,6 @@ function countdown(){
  
 function answerSubmit(){
   $('.answer').click(function(){
-    questionCounter++;
-
     questionsAndAnswers();
   });
 }
@@ -78,8 +75,8 @@ function answerSubmit(){
 function gameover(){
   $('#gameplay').hide();
   $('#results').show();
-  $(`#correctAnswers`).text(correctAnswers)
-  $('#results').append(`<hr style: color='red'><br>`+questionArray[0]+`<br><br>`+correctAnswerArray[0]+`<br><br>`+imageArray[0]+`<br><br><hr style: color='red'><br>`+questionArray[1]+`<br><br>`+correctAnswerArray[1]+`<br><br>`+imageArray[1]+`<br><br><hr style: color='red'><br>`+questionArray[2]+`<br><br>`+correctAnswerArray[2]+`<br><br>`+imageArray[2]+`<br><br><hr style: color='red'><br>`+questionArray[3]+`<br><br>`+correctAnswerArray[3]+`<br><br>`+imageArray[3]+`<br><br><hr style: color='red'><br>`+questionArray[4]+`<br><br>`+correctAnswerArray[4]+`<br><br>`+imageArray[4]+`<br><br><hr style: color='red'><br>`+questionArray[5]+`<br><br>`+correctAnswerArray[5]+`<br><br>`+imageArray[5]+`<br><br><hr style: color='red'><br>`+questionArray[6]+`<br><br>`+correctAnswerArray[6]+`<br><br>`+imageArray[6]+`<br><br><hr style: color='red'><br>`+questionArray[7]+`<br><br>`+correctAnswerArray[7]+`<br><br>`+imageArray[7]+`<br><br><hr style: color='red'><br>`+questionArray[8]+`<br><br>`+correctAnswerArray[8]+`<br><br>`+imageArray[8]+`<br><br><hr style: color='red'><br>`+questionArray[9]+`<br><br>`+correctAnswerArray[9]+`<br><br>`+imageArray[9]);
+  $(`#correctAnswerNumber`).text(correctAnswers)
+  $('#results').append(`<hr style: color='red'><br>`+questionArray[0]+`<br><br>Your answer: `+playerAnswerArray[0]+`<br>Correct answer: `+correctAnswerArray[0]+`<br><br>`+imageArray[0]+`<br><br><hr style: color='red'><br>`+questionArray[1]+`<br><br>Your answer: `+playerAnswerArray[1]+`<br>Correct answer: `+correctAnswerArray[1]+`<br><br>`+imageArray[1]+`<br><br><hr style: color='red'><br>`+questionArray[2]+`<br><br>Your answer: `+playerAnswerArray[2]+`<br>Correct answer: `+correctAnswerArray[2]+`<br><br>`+imageArray[2]+`<br><br><hr style: color='red'><br>`+questionArray[3]+`<br><br>Your answer: `+playerAnswerArray[3]+`<br>Correct answer: `+correctAnswerArray[3]+`<br><br>`+imageArray[3]+`<br><br><hr style: color='red'><br>`+questionArray[4]+`<br><br>Your answer: `+playerAnswerArray[4]+`<br>Correct answer: `+correctAnswerArray[4]+`<br><br>`+imageArray[4]+`<br><br><hr style: color='red'><br>`+questionArray[5]+`<br><br>Your answer: `+playerAnswerArray[5]+`<br>Correct answer: `+correctAnswerArray[5]+`<br><br>`+imageArray[5]+`<br><br><hr style: color='red'><br>`+questionArray[6]+`<br><br>Your answer: `+playerAnswerArray[6]+`<br>Correct answer: `+correctAnswerArray[6]+`<br><br>`+imageArray[6]+`<br><br><hr style: color='red'><br>`+questionArray[7]+`<br><br>Your answer: `+playerAnswerArray[7]+`<br>Correct answer: `+correctAnswerArray[7]+`<br><br>`+imageArray[7]+`<br><br><hr style: color='red'><br>`+questionArray[8]+`<br><br>Your answer: `+playerAnswerArray[8]+`<br>Correct answer: `+correctAnswerArray[8]+`<br><br>`+imageArray[8]+`<br><br><hr style: color='red'><br>`+questionArray[9]+`<br><br>Your answer: `+playerAnswerArray[9]+`<br>Correct answer: `+correctAnswerArray[9]+`<br><br>`+imageArray[9]);
 }
 
 function questionsAndAnswers(){
@@ -102,6 +99,7 @@ $("#startGame").click(function(){
   $('#preGameplay').hide();
   $('#gameplay').show();
   $('#timer').text(seconds);
+  console.log(questionCounter)
   countdown();
   questionsAndAnswers();
 });
