@@ -1,11 +1,8 @@
-// record player's answer 
-// when all 10 questions answered OR when timer is up, show number of player's correct answers, all 10 questions with both correct answer, and player answer
 
-var seconds = 120;
 var allQuestionsAndAnswers = [
   { //1
     question: `What name did Hanks give the one friend he had on the island in <i>Castaway</i>?`,
-    choices: [`Brian`,`Wilson`,`Bubba`,`Tom`],
+    choices: [`Buddy`,`Wilson`,`Bubba`,`Tom`],
     answer: `Wilson`,
     image: `<img src='assets/images/answer1.jpg' width='300' height='300'>`
   },
@@ -22,16 +19,16 @@ var allQuestionsAndAnswers = [
     image: `<img src='assets/images/answer3.jpg' width='300' height='300'>`
   },
   { //4
-    question: `In <i>Big</i>, Hanks makes a wish at a carnival fortune teller to be "big" so that he could ride a roller coaster with a girl he had a crush on. What was the name of the fortune teller?`,
+    question: `What was the name of the arcade game that grants Hanks' wish in <i>Big</i>?`,
     choices: [`Genie`,`Zoltar`,`Wizard`,`Wishy`],
     answer: `Zoltar`,
     image: `<img src='assets/images/answer4.jpg' width='300' height='300'>`
   },
   { //5
-    question: `In <i>The Burbs</i>, what piece of evidence did Hanks find in his neighbor's house that led him to suspect them of murder? <br> Hint: he hid it in his shorts.`,
-    choices: [`a photograph`,`a toupee`,`a bone`,`a half-eaten hot dog`],
-    answer: `a toupee`,
-    image: `<img src='assets/images/answer5.jpg' width='300' height='300'>`
+    question: `Which of these Hanks characters was NOT based a biographical figure?`,
+    choices: [`an astronaut`,`an airline pilot`,`a train conductor`,`a ship captain`],
+    answer: `a train conductor`,
+    image: `<img src='assets/images/answer10.jpg' width='300' height='300'>`
   },
   { //6
     question: `What was the name of the record label Hanks represented in <i>That Thing You Do</i>?`,
@@ -53,33 +50,23 @@ var allQuestionsAndAnswers = [
   },
   { //9
     question: `What was the name of Hanks' character in <i>Catch Me If You Can</i>?`,
-    choices: [`Carl Handratty`,`Thomas Tophopper`,`William Piccadilly`,`Jimmy Dinglehopper`],
+    choices: [`Carl Handratty`,`John Tophopper`,`William Piccadilly`,`Jimmy Dinglehopper`],
     answer: `Carl Handratty`,
     image: `<img src='assets/images/answer9.jpg' width='300' height='300'>`
   },
   { //10
-    question: `Which of these Hanks characters was NOT based a biographical figure?`,
-    choices: [`an astronaut`,`an airline pilot`,`a train conductor`,`a ship captain`],
-    answer: `a train conductor`,
-    image: `<img src='assets/images/answer10.jpg' width='300' height='300'>`
+    question: `In <i>The Burbs</i>, what piece of evidence did Hanks find in his neighbor's house that led him to suspect them of murder? <br> Hint: he hid it in his shorts.`,
+    choices: [`a photograph`,`a toupee`,`a bone`,`a half-eaten hot dog`],
+    answer: `a toupee`,
+    image: `<img src='assets/images/answer5.jpg' width='300' height='300'>`
   }
 ]
 
-var correctAnswerArray = [`Wilson`,`in baseball`,`Ronald Reagan`,`Zoltar`,`a toupee`,`Play-Tone`,`Teacher`,`"Well isn't that a dandy!"`,`Carl Handratty`,`a train conductor`];
 var playerAnswers = [];
 var questionCounter = 0;
-
-var currentQuizItem = $('#gameplayQA').html(allQuestionsAndAnswers[questionCounter].question+
-  `<br><br>
-  <button>`+allQuestionsAndAnswers[questionCounter].choices[0]+`</button><br><br>
-  <button>`+allQuestionsAndAnswers[questionCounter].choices[1]+`</button><br><br>
-  <button>`+allQuestionsAndAnswers[questionCounter].choices[2]+`</button><br><br>
-  <button>`+allQuestionsAndAnswers[questionCounter].choices[3]+`</button>`+
-  `<br><br>`+
-  allQuestionsAndAnswers[questionCounter].image);
-
 var correctAnswers = 0;
 var incorrectAnswers = 0;
+var seconds = 120;
 var tryAgain = `<button id='tryagain' href='#' onClick="window.location.reload();return false";>Try Again!</button>`
 
 function countdown(){ //the countdown clock and when to kill or continue it
@@ -103,7 +90,18 @@ function gameover(){
   $('#gameplay').hide();
   $('#results').show();
   $(`#correctAnswerNumber`).text(correctAnswers);
-  $('#resultsRecap').html(`<hr style: color='red'><br>`+allQuestionsAndAnswers[0].question+`<br>Correct answer: `+allQuestionsAndAnswers[0].answer+`<br><br>`+allQuestionsAndAnswers[0].image+`<br><br><hr style: color ='red'><br>`+allQuestionsAndAnswers[1].question+`<br>Correct answer: `+allQuestionsAndAnswers[1].answer+`<br><br>`+allQuestionsAndAnswers[1].image+`<br><br><hr style: color ='red'><br>`+allQuestionsAndAnswers[2].question+`<br>Correct answer: `+allQuestionsAndAnswers[2].answer+`<br><br>`+allQuestionsAndAnswers[2].image+`<br><br><hr style: color ='red'><br>`+allQuestionsAndAnswers[3].question+`<br>Correct answer: `+allQuestionsAndAnswers[3].answer+`<br><br>`+allQuestionsAndAnswers[3].image+`<br><br><hr style: color ='red'><br>`+allQuestionsAndAnswers[4].question+`<br>Correct answer: `+allQuestionsAndAnswers[4].answer+`<br><br>`+allQuestionsAndAnswers[4].image+`<br><br><hr style: color ='red'><br>`+allQuestionsAndAnswers[5].question+`<br>Correct answer: `+allQuestionsAndAnswers[5].answer+`<br><br>`+allQuestionsAndAnswers[5].image+`<br><br><hr style: color ='red'><br>`+allQuestionsAndAnswers[6].question+`<br>Correct answer: `+allQuestionsAndAnswers[6].answer+`<br><br>`+allQuestionsAndAnswers[6].image+`<br><br><hr style: color ='red'><br>`+allQuestionsAndAnswers[7].question+`<br>Correct answer: `+allQuestionsAndAnswers[7].answer+`<br><br>`+allQuestionsAndAnswers[7].image+`<br><br><hr style: color ='red'><br>`+allQuestionsAndAnswers[8].question+`<br>Correct answer: `+allQuestionsAndAnswers[8].answer+`<br><br>`+allQuestionsAndAnswers[8].image+`<br><br><hr style: color ='red'><br>`+allQuestionsAndAnswers[9].question+`<br>Correct answer: `+allQuestionsAndAnswers[9].answer+`<br><br>`+allQuestionsAndAnswers[9].image+`<br><br><hr style: color ='red'><br>`+tryAgain);
+  $('#resultsRecap').html(`<hr style: color='red'><br>`+allQuestionsAndAnswers[0].question+`<br><br>Your answer: `+playerAnswers[0]+`<br><br>Correct answer: `+allQuestionsAndAnswers[0].answer+`<br><br>`+allQuestionsAndAnswers[0].image+`<br><br><hr style: color ='red'><br>`+allQuestionsAndAnswers[1].question+`<br><br>Your answer: `+playerAnswers[1]+`<br><br>Correct answer: `+allQuestionsAndAnswers[1].answer+`<br><br>`+allQuestionsAndAnswers[1].image+`<br><br><hr style: color ='red'><br>`+allQuestionsAndAnswers[2].question+`<br><br>Your answer: `+playerAnswers[2]+`<br><br>Correct answer: `+allQuestionsAndAnswers[2].answer+`<br><br>`+allQuestionsAndAnswers[2].image+`<br><br><hr style: color ='red'><br>`+allQuestionsAndAnswers[3].question+`<br><br>Your answer: `+playerAnswers[3]+`<br><br>Correct answer: `+allQuestionsAndAnswers[3].answer+`<br><br>`+allQuestionsAndAnswers[3].image+`<br><br><hr style: color ='red'><br>`+allQuestionsAndAnswers[4].question+`<br><br>Your answer: `+playerAnswers[4]+`<br><br>Correct answer: `+allQuestionsAndAnswers[4].answer+`<br><br>`+allQuestionsAndAnswers[4].image+`<br><br><hr style: color ='red'><br>`+allQuestionsAndAnswers[5].question+`<br><br>Your answer: `+playerAnswers[5]+`<br><br>Correct answer: `+allQuestionsAndAnswers[5].answer+`<br><br>`+allQuestionsAndAnswers[5].image+`<br><br><hr style: color ='red'><br>`+allQuestionsAndAnswers[6].question+`<br><br>Your answer: `+playerAnswers[6]+`<br><br>Correct answer: `+allQuestionsAndAnswers[6].answer+`<br><br>`+allQuestionsAndAnswers[6].image+`<br><br><hr style: color ='red'><br>`+allQuestionsAndAnswers[7].question+`<br><br>Your answer: `+playerAnswers[7]+`<br><br>Correct answer: `+allQuestionsAndAnswers[7].answer+`<br><br>`+allQuestionsAndAnswers[7].image+`<br><br><hr style: color ='red'><br>`+allQuestionsAndAnswers[8].question+`<br><br>Your answer: `+playerAnswers[8]+`<br><br>Correct answer: `+allQuestionsAndAnswers[8].answer+`<br><br>`+allQuestionsAndAnswers[8].image+`<br><br><hr style: color ='red'><br>`+allQuestionsAndAnswers[9].question+`<br><br>Your answer: `+playerAnswers[9]+`<br><br>Correct answer: `+allQuestionsAndAnswers[9].answer+`<br><br>`+allQuestionsAndAnswers[9].image+`<br><br><hr style: color ='red'><br>`+tryAgain);
+}
+
+function getQuizStarted(){
+  $('#gameplayQA').html(allQuestionsAndAnswers[questionCounter].question+
+  `<br><br>
+  <button>`+allQuestionsAndAnswers[questionCounter].choices[0]+`</button><br><br>
+  <button>`+allQuestionsAndAnswers[questionCounter].choices[1]+`</button><br><br>
+  <button>`+allQuestionsAndAnswers[questionCounter].choices[2]+`</button><br><br>
+  <button>`+allQuestionsAndAnswers[questionCounter].choices[3]+`</button>`+
+  `<br><br>`+
+  allQuestionsAndAnswers[questionCounter].image);
 }
 
 function refreshGameplay(){
@@ -127,6 +125,7 @@ function playGame(){
     }else{
       incorrectAnswers++;
     }
+    playerAnswers.push($(this).text());
     questionCounter++;
     if(questionCounter >= 10){
       gameover();
@@ -141,5 +140,6 @@ $("#startGame").click(function(){
   $('#gameplay').show();
   $('#timer').text(seconds);
   countdown();
+  getQuizStarted();
   playGame();
 });
