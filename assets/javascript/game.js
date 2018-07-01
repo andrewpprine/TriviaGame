@@ -28,7 +28,7 @@ var allQuestionsAndAnswers = [
     question: `Which of these Hanks characters was NOT based a biographical figure?`,
     choices: [`an astronaut`,`an airline pilot`,`a train conductor`,`a ship captain`],
     answer: `a train conductor`,
-    image: `<img src='assets/images/answer10.jpg' width='300' height='300'>`
+    image: `<img src='assets/images/answer5.jpg' width='300' height='300'>`
   },
   { //6
     question: `What was the name of the record label Hanks represented in <i>That Thing You Do</i>?`,
@@ -58,7 +58,7 @@ var allQuestionsAndAnswers = [
     question: `In <i>The Burbs</i>, what piece of evidence did Hanks find in his neighbor's house that led him to suspect them of murder? <br> Hint: he hid it in his shorts.`,
     choices: [`a photograph`,`a toupee`,`a bone`,`a half-eaten hot dog`],
     answer: `a toupee`,
-    image: `<img src='assets/images/answer5.jpg' width='300' height='300'>`
+    image: `<img src='assets/images/answer10.jpg' width='300' height='300'>`
   }
 ]
 
