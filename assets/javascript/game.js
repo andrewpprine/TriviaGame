@@ -1,4 +1,4 @@
-
+//an array with 10 questions, each with 4 answer choices, the correct answer, and an image 
 var allQuestionsAndAnswers = [
   { //1
     question: `What name did Hanks give the one friend he had on the island in <i>Castaway</i>?`,
@@ -62,12 +62,12 @@ var allQuestionsAndAnswers = [
   }
 ]
 
-var playerAnswers = [];
-var questionCounter = 0;
-var correctAnswers = 0;
+var playerAnswers = [];//players answers get added here for display on results page
+var questionCounter = 0;//goes up with each question
+var correctAnswers = 0;//
 var incorrectAnswers = 0;
-var seconds = 120;
-var tryAgain = `<button id='tryagain' href='#' onClick="window.location.reload();return false";>Try Again!</button>`
+var seconds = 120;//for the two minute timer
+var tryAgain = `<button id='tryagain' href='#' onClick="window.location.reload();return false";>Try Again!</button>`//displayed at end of results page; refreshes page
 
 function countdown(){ //the countdown clock and when to kill or continue it
   timer = setInterval(timer, 1000);
@@ -86,14 +86,14 @@ function countdown(){ //the countdown clock and when to kill or continue it
   }
  }
  
-function gameover(){
+function gameover(){//displays the results page, which lists all questions, the player's answer, the correct answer, and the image from that question; reset button on bottom of page
   $('#gameplay').hide();
   $('#results').show();
   $(`#correctAnswerNumber`).text(correctAnswers);
   $('#resultsRecap').html(`<hr style: color='red'><br>`+allQuestionsAndAnswers[0].question+`<br><br>Your answer: `+playerAnswers[0]+`<br><br>Correct answer: `+allQuestionsAndAnswers[0].answer+`<br><br>`+allQuestionsAndAnswers[0].image+`<br><br><hr style: color ='red'><br>`+allQuestionsAndAnswers[1].question+`<br><br>Your answer: `+playerAnswers[1]+`<br><br>Correct answer: `+allQuestionsAndAnswers[1].answer+`<br><br>`+allQuestionsAndAnswers[1].image+`<br><br><hr style: color ='red'><br>`+allQuestionsAndAnswers[2].question+`<br><br>Your answer: `+playerAnswers[2]+`<br><br>Correct answer: `+allQuestionsAndAnswers[2].answer+`<br><br>`+allQuestionsAndAnswers[2].image+`<br><br><hr style: color ='red'><br>`+allQuestionsAndAnswers[3].question+`<br><br>Your answer: `+playerAnswers[3]+`<br><br>Correct answer: `+allQuestionsAndAnswers[3].answer+`<br><br>`+allQuestionsAndAnswers[3].image+`<br><br><hr style: color ='red'><br>`+allQuestionsAndAnswers[4].question+`<br><br>Your answer: `+playerAnswers[4]+`<br><br>Correct answer: `+allQuestionsAndAnswers[4].answer+`<br><br>`+allQuestionsAndAnswers[4].image+`<br><br><hr style: color ='red'><br>`+allQuestionsAndAnswers[5].question+`<br><br>Your answer: `+playerAnswers[5]+`<br><br>Correct answer: `+allQuestionsAndAnswers[5].answer+`<br><br>`+allQuestionsAndAnswers[5].image+`<br><br><hr style: color ='red'><br>`+allQuestionsAndAnswers[6].question+`<br><br>Your answer: `+playerAnswers[6]+`<br><br>Correct answer: `+allQuestionsAndAnswers[6].answer+`<br><br>`+allQuestionsAndAnswers[6].image+`<br><br><hr style: color ='red'><br>`+allQuestionsAndAnswers[7].question+`<br><br>Your answer: `+playerAnswers[7]+`<br><br>Correct answer: `+allQuestionsAndAnswers[7].answer+`<br><br>`+allQuestionsAndAnswers[7].image+`<br><br><hr style: color ='red'><br>`+allQuestionsAndAnswers[8].question+`<br><br>Your answer: `+playerAnswers[8]+`<br><br>Correct answer: `+allQuestionsAndAnswers[8].answer+`<br><br>`+allQuestionsAndAnswers[8].image+`<br><br><hr style: color ='red'><br>`+allQuestionsAndAnswers[9].question+`<br><br>Your answer: `+playerAnswers[9]+`<br><br>Correct answer: `+allQuestionsAndAnswers[9].answer+`<br><br>`+allQuestionsAndAnswers[9].image+`<br><br><hr style: color ='red'><br>`+tryAgain);
 }
 
-function getQuizStarted(){
+function getQuizStarted(){//displays question, answer choices, and image for quiz question
   $('#gameplayQA').html(allQuestionsAndAnswers[questionCounter].question+
   `<br><br>
   <button>`+allQuestionsAndAnswers[questionCounter].choices[0]+`</button><br><br>
@@ -104,7 +104,7 @@ function getQuizStarted(){
   allQuestionsAndAnswers[questionCounter].image);
 }
 
-function refreshGameplay(){
+function refreshGameplay(){//updates question number and question/answers/image
   $('#progress').text(questionCounter+1);
   $('#gameplayQA').html(allQuestionsAndAnswers[questionCounter].question+
     `<br><br>
@@ -117,7 +117,7 @@ function refreshGameplay(){
     playGame();
 }
 
-function playGame(){
+function playGame(){//when player selects answer, it's recorded as correct or incorrect, that answer is saved to array of player answers, and calls function to move to next question -- unless all questions answered, which calls function to end game and display results page
   $('#progress').text(questionCounter+1);
   $('button').on('click',function (){
     if ($(this).text() == allQuestionsAndAnswers[questionCounter].answer){
@@ -135,7 +135,7 @@ function playGame(){
   });
 }
 
-$("#startGame").click(function(){
+$("#startGame").click(function(){//hides starting directions, displays gameplay area, starts the timer, and shows first question to begin gameplay
   $('#preGameplay').hide();
   $('#gameplay').show();
   $('#timer').text(seconds);
